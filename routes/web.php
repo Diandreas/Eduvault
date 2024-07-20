@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CoursController;
+use App\Http\Controllers\CourssController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,3 +17,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+// Route::get('/cours/create', [CoursController::class, 'create'])->name('create');
+Route::resource('cours', CourssController::class);
+
+

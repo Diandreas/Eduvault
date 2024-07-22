@@ -3,6 +3,7 @@
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\CourssController;
+use App\Http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +19,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::resource('country', CountryController::class);
+    Route::resource('school', SchoolController::class);
 });
 
 

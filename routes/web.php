@@ -5,6 +5,7 @@ use App\Http\Controllers\CoursController;
 use App\Http\Controllers\CourssController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoollevelController;
+use App\Http\Controllers\SchoollevelscourController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,6 +23,7 @@ Route::middleware([
     Route::resource('country', CountryController::class);
     Route::resource('school', SchoolController::class);
     Route::resource('schoollevel', SchoollevelController::class);
+    Route::resource('schoollevelscours', SchoollevelscourController::class);
 });
 
 

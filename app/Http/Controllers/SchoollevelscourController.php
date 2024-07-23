@@ -63,8 +63,9 @@ class SchoollevelscourController extends Controller
     public function edit($id): View
     {
         $schoollevelscour = Schoollevelscour::find($id);
-
-        return view('schoollevelscour.edit', compact('schoollevelscour'));
+        $schoollevels = Schoollevel::all();
+        $courses = Cours::all();
+        return view('schoollevelscour.edit', compact('schoollevelscour','schoollevels','courses'));
     }
 
     /**

@@ -3,11 +3,11 @@
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\CourssController;
-use App\Http\Controllers\DocController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoollevelController;
 use App\Http\Controllers\SchoollevelscourController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DocController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,8 +25,6 @@ Route::middleware([
     Route::resource('school', SchoolController::class);
     Route::resource('schoollevel', SchoollevelController::class);
     Route::resource('schoollevelscours', SchoollevelscourController::class);
-    Route::resource('cours', CourssController::class);
-    Route::resource('documents', DocController::class);
 });
 
 

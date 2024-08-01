@@ -16,13 +16,14 @@ class SchoollevelscourController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index(): View
     {
-        $schoollevelscours = Schoollevelscour::paginate();
+        $schoollevelscours = Schoollevelscour::with(['schoollevel', 'cours'])->paginate(10);
 
         return view('schoollevelscour.index', compact('schoollevelscours'))
-            ->with('i', ($request->input('page', 1) - 1) * $schoollevelscours->perPage());
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
+
 
     /**
      * Show the form for creating a new resource.

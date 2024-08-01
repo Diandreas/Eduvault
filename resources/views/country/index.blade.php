@@ -17,10 +17,19 @@
                         <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                             <a type="button" href="{{ route('country.create') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add new</a>
                         </div>
+
                     </div>
 
                     <div class="flow-root">
                         <div class="mt-8 overflow-x-auto">
+                            <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <h2>Add with file</h2>
+                                <div class="flex items-center">
+                                    <input type="file" name="file" class="border rounded py-2 px-3 mr-2">
+                                    <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">Upload</button>
+                                </div>
+                            </form>
                             <div class="inline-block min-w-full py-2 align-middle">
                                 <table class="w-full divide-y divide-gray-300">
                                     <thead>

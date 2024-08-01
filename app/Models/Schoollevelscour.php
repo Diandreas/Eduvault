@@ -13,14 +13,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  *
- * @property Cour $cour
+ * @property Cours $cours
  * @property Schoollevel $schoollevel
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Schoollevelscour extends Model
 {
-    
+
     protected $perPage = 20;
 
     /**
@@ -34,11 +34,11 @@ class Schoollevelscour extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function cour()
+    public function cours()
     {
         return $this->belongsTo(\App\Models\cours::class, 'cours_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -46,5 +46,5 @@ class Schoollevelscour extends Model
     {
         return $this->belongsTo(\App\Models\Schoollevel::class, 'schoollevel_id', 'id');
     }
-    
+
 }

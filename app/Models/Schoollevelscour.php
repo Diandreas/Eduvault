@@ -36,7 +36,7 @@ class Schoollevelscour extends Model
      */
     public function cour()
     {
-        return $this->belongsTo(\App\Models\Cour::class, 'cours_id', 'id');
+        return $this->belongsTo(\App\Models\cours::class, 'cours_id', 'id');
     }
     
     /**

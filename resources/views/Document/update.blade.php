@@ -19,41 +19,42 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('cours.store') }}" method="POST">
+                    <form action="{{ route('documents.update', $doc->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
 
                         <div class="block mt-4">
                             <label for="name">{{ __('Name') }}</label>
-                            <input type="text" class="block mt-1 w-full" id="name" name="name" value="{{ old('name') }}" placeholder="Example:Introduction to Programming" required>
+                            <input type="text" class="block mt-1 w-full" id="name" name="name" value="{{ $doc->name }}"  required>
                         </div>
 
-                        <div class="form-group">
-                            <label for="description">{{ __('Description') }}</label>
-                            <textarea class="block mt-1 w-full" id="description" name="description" placeholder="example:Learn the basics of programming using Python.">{{ old('description') }}</textarea>
+                        <div class="block mt-4">
+                            <label for="name">{{ __('Path') }}</label>
+                            <input type="text" class="block mt-1 w-full" id="path" name="path" value="{{ $doc->path }}"  required>
+                        </div>  
+                        
+                        <div class="block mt-4">
+                            <label for="name">{{ __('Format') }}</label>
+                            <input type="text" class="block mt-1 w-full" id="format" name="format" value="{{ $doc->format }}"  required>
                         </div>
 
-                        <div class="form-group">
-                            <label for="parent_id">{{ __('Parent ') }}</label>
-                            <select class="block mt-1 w-full" id="parent_id" name="parent_id" >
-                                <option value="">nothing</option>
-                                @foreach ($allcours as $cours)
-                                    <option value="{{$cours->id}}" {{ (old('parent_id') == $cours->id) ? 'selected' : '' }}>
-                                        {{$cours->name}}
-                                    </option>
-                                @endforeach    
-                            </select>
+                        <div class="block mt-4">
+                            <label for="name">{{ __('size') }}</label>
+                            <input type="text" class="block mt-1 w-full" id="size" name="size" value="{{ $doc->size  }}"  required>
                         </div>
+
+                       
                         
                         <div class="flex items-center justify-end mt-4">
                             <button type="submit" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                {{ __('Submit') }}
+                                {{ __('Update') }}
                             </button>
                         </div>
                         
                     </form>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                        <a  href="{{ route('cours.index') }}"  class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                            Show all cours
+                        <a  href="{{ route('documents.index') }}"  class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                            Back
                         </a>
                     </div>
                 </div>

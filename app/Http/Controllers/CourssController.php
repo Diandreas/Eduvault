@@ -21,7 +21,8 @@ class CourssController extends Controller
      */
     public function create()
     {
-        return view('cours.create');
+        $allcours = cours::all();
+        return view('cours.create', compact('allcours'));
     }
 
     /**
@@ -29,6 +30,7 @@ class CourssController extends Controller
      */
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',

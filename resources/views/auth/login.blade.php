@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <canvas id="canvas" width="200" height="100"></canvas>
         </x-slot>
 
         <x-validation-errors class="mb-4" />
@@ -14,7 +14,6 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-
             <div>
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
@@ -39,10 +38,26 @@
                     </a>
                 @endif
 
+
                 <x-button class="ms-4">
                     {{ __('Log in') }}
                 </x-button>
             </div>
         </form>
+
     </x-authentication-card>
 </x-guest-layout>
+<script src="https://unpkg.com/@rive-app/canvas@2.17.3"></script>
+<script>
+    const r = new rive.Rive({
+        src: "https://cdn.rive.app/animations/vehicles.riv",
+        // OR the path to a discoverable and public Rive asset
+        // src: '/public/example.riv',
+        canvas: document.getElementById("canvas"),
+        autoplay: true,
+        stateMachines: "bumpy",
+        onLoad: () => {
+            r.resizeDrawingSurfaceToCanvas();
+        },
+    });
+</script>

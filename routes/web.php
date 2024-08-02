@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\CountryController;
-use App\Http\Controllers\CoursController;
 use App\Http\Controllers\CourssController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoollevelController;
 use App\Http\Controllers\SchoollevelscourController;
@@ -25,6 +25,9 @@ Route::middleware([
     Route::resource('school', SchoolController::class);
     Route::resource('schoollevel', SchoollevelController::class);
     Route::resource('schoollevelscours', SchoollevelscourController::class);
+    Route::resource('cours', CourssController::class);
+    Route::resource('documents', DocController::class);
+    Route::post('/import', [ImportController::class, 'import'])->name('import');
 });
 
 

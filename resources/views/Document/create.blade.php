@@ -28,18 +28,23 @@
                         </div>
 
                         <div class="block mt-4">
+                            <label for="file">{{ __('Upload File') }}</label>
+                            <input type="file" class="block mt-1 w-full" id="file" name="file" required readonly>
+                        </div>
+
+                        <div class="block mt-4">
                             <label for="name">{{ __('Path') }}</label>
-                            <input type="text" class="block mt-1 w-full" id="path" name="path" value="{{ old('path') }}"  required>
+                            <input type="text" class="block mt-1 w-full" id="path" name="path" value="{{ old('path') }}"  required readonly>
                         </div>  
                         
                         <div class="block mt-4">
                             <label for="name">{{ __('Format') }}</label>
-                            <input type="text" class="block mt-1 w-full" id="format" name="format" value="{{ old('format') }}"  required>
+                            <input type="text" class="block mt-1 w-full" id="format" name="format" value="{{ old('format') }}"  required readonly>
                         </div>
 
                         <div class="block mt-4">
                             <label for="name">{{ __('size') }}</label>
-                            <input type="text" class="block mt-1 w-full" id="size" name="size" value="{{ old('size') }}"  required>
+                            <input type="text" class="block mt-1 w-full" id="size" name="size" value="{{ old('size') }}"  required readonly>
                         </div>
 
                         <!-- <div class="block mt-4">
@@ -81,6 +86,24 @@
                             Back
                         </a>
                     </div>
+                    <script>
+                        document.getElementById('file').addEventListener('change', function(event) {
+                            const file = event.target.files[0];
+                            if (file) {
+                                const fileName = file.name;
+                                const fileSize = (file.size / 1024).toFixed(2); // Taille en Ko
+                                const fileFormat = fileName.split('.').pop(); // Extraction du format du fichier
+
+                                document.getElementById('path').value = fileName;
+                                document.getElementById('size').value = `${fileSize} KB`;
+                                document.getElementById('format').value = fileFormat;
+                            } else {
+                                document.getElementById('path').value = '';
+                                document.getElementById('size').value = '';
+                                document.getElementById('format').value = '';
+                            }
+                        });
+                    </script>
                 </div>
             </div>
         </div>

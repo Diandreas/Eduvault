@@ -93,6 +93,6 @@ class DocController extends Controller
     {
         $doc = Document::findOrFail($id);
         $doc->delete();
-        return redirect()->route('documents.index')->with('success', 'Documents deleted successfully');
+        return redirect()->route('documents.index')->with('success', 'Documents  deleted successfully');
     }
 }

@@ -22,8 +22,9 @@
                 @foreach ($schools as $school)
                     <div class="bg-white overflow-hidden shadow-sm rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
                         <div class="relative pb-48 overflow-hidden">
-                            <img class="absolute inset-0 h-full w-full object-cover" src="{{ $school->image_url ?? 'https://via.placeholder.com/300x200.png?text=School+Image' }}" alt="{{ $school->name }}">
+                            <img loading="lazy" class="absolute inset-0 h-full w-full object-cover" src="{{ old('image', $school?->image ? asset('storage/' . $school->image) : 'https://via.placeholder.com/300x200.png?text=School+Image') }}" alt="{{ $school->name }} Image">
                         </div>
+
                         <div class="p-4">
                             <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $school->name }}</h3>
                             <p class="text-sm text-gray-600 mb-4">{{ Str::limit($school->description, 100) }}</p>

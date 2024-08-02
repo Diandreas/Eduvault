@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class School
@@ -20,7 +21,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class School extends Model
 {
-    
     protected $perPage = 20;
 
     /**
@@ -28,7 +28,12 @@ class School extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'description', 'country_id'];
+    protected $fillable = ['name', 'description', 'country_id', 'image'];
+
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->image ? Storage::disk('public')->url($this->image) : 'https://via.placeholder.com/300x200.png?text=School+Image';
+    }
 
 
     /**
@@ -38,5 +43,5 @@ class School extends Model
     {
         return $this->belongsTo(\App\Models\Country::class, 'country_id', 'id');
     }
-    
+
 }

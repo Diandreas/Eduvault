@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\SchoolRequest;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class SchoolController extends Controller
@@ -38,7 +39,14 @@ class SchoolController extends Controller
      */
     public function store(SchoolRequest $request): RedirectResponse
     {
-        School::create($request->validated());
+        // Validation et enregistrement de l'image
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        School::create($data);
 
         return Redirect::route('school.index')
             ->with('success', 'School created successfully.');
@@ -69,7 +77,20 @@ class SchoolController extends Controller
      */
     public function update(SchoolRequest $request, School $school): RedirectResponse
     {
-        $school->update($request->validated());
+        // Validation et mise à jour de l'image
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            // Supprimer l'ancienne image si elle existe
+            if ($school->image) {
+                Storage::disk('public')->delete($school->image);
+            }
+
+            // Enregistrer la nouvelle image
+            $data['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        $school->update($data);
 
         return Redirect::route('school.index')
             ->with('success', 'School updated successfully');
@@ -77,7 +98,14 @@ class SchoolController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        School::find($id)->delete();
+        $school = School::find($id);
+
+        // Supprimer l'image associée si elle existe
+        if ($school->image) {
+            Storage::disk('public')->delete($school->image);
+        }
+
+        $school->delete();
 
         return Redirect::route('school.index')
             ->with('success', 'School deleted successfully');

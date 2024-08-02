@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->foreignId('country_id')->constrained('countries')->onDelete('cascade');
+            $table->string('image')->nullable(); // chemin d'acces de l'image
             $table->timestamps();
         });
     }

@@ -16,10 +16,10 @@ class CountryController extends Controller
      */
     public function index(Request $request): View
     {
-        $countries = Country::paginate();
+        $countries = Country::paginate(5);
 
         return view('country.index', compact('countries'))
-            ->with('i', ($request->input('page', 1) - 1) * $countries->perPage());
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**

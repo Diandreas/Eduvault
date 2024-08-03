@@ -18,24 +18,14 @@ class cours extends Model
     protected $fillable = [
         'name',
         'description',
-        'parent_id',
+        'parent_course_id',
     ];
 
-    /**
-     * Get the parent course.
-     */
-    public function parent()
+    public function parentCourse()
     {
-        return $this->belongsTo(Cours::class, 'parent_id');
+        return $this->belongsTo(ParentCourse::class);
     }
 
-    /**
-     * Get the child courses.
-     */
-    public function children()
-    {
-        return $this->hasMany(Cours::class, 'parent_id');
-    }
 }
 
 

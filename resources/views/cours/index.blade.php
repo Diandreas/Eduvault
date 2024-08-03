@@ -40,6 +40,9 @@
                         <div class="p-6">
                             <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $cours->name }}</h3>
                             <p class="text-sm text-gray-600 mb-4">{{ Str::limit($cours->description, 100) }}</p>
+                            <p>
+                                <i>{{$cours->parentCourse?->name}}</i>
+                            </p>
                             @if($cours->parent_id)
                                 <div class="text-sm text-gray-500 mb-4">
                                     <span class="font-medium">Parent Course:</span> {{ $cours->parent_id }}

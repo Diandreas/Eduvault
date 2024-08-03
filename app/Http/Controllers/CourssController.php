@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 use App\Models\cours;
+use App\Models\ParentCourse;
 use Illuminate\Http\Request;
 
 class CourssController extends Controller
@@ -21,25 +24,20 @@ class CourssController extends Controller
      */
     public function create()
     {
-        $allcours = cours::all();
-        return view('cours.create', compact('allcours'));
+        $course = new cours();
+        $parentCourse = ParentCourse::all();
+        return view('cours.form', compact('course', 'parentCourse'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
-
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'parent_id' => 'nullable|integer|exists:cours,id',
-        ]);
-
+        $validatedData = $request->validated();
         cours::create($validatedData);
 
-        return redirect()->route('cours.index');
+        return redirect()->route('cours.index')->with('success', 'Course created successfully');
     }
 
     /**
@@ -55,27 +53,18 @@ class CourssController extends Controller
      */
     public function edit(string $id)
     {
-        $cours = cours::findOrFail($id);
-        return view('cours.update' ,compact('cours'));
+        $course = cours::findOrFail($id);
+        $parentCourse = ParentCourse::all();
+        return view('cours.form' ,compact('course', 'parentCourse'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCourseRequest $request, string $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            // 'parent_id' => 'nullable|integer|exists:cours,id',
-        ]);
-
-        // dd($request->all());
-
         $cours = Cours::findOrFail($id);
-        $cours->name = $request->input('name');
-        $cours->description = $request->input('description');
-        // $cours->parent_id = $request->input('parent_id');
+        $cours->update($request->validated());
         $cours->save();
 
         return redirect()->route('cours.index')->with('success', 'Course updated successfully');

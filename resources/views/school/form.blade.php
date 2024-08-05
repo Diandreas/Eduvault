@@ -9,6 +9,7 @@
         </div>
 
         <div class="mt-4 w-full flex justify-center">
+
             <img id="imagePreview" src="{{ old('image', $school?->image ? asset('storage/' . $school->image) : 'https://via.placeholder.com/300x200.png?text=School+Image') }}" alt="Image Preview" class="max-w-full h-auto rounded-lg shadow-md">
         </div>
     </div>

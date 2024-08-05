@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class cours extends Model
 {
     use HasFactory;
-    
+
 
     /**
      * The attributes that are mass assignable.
@@ -18,24 +18,23 @@ class cours extends Model
     protected $fillable = [
         'name',
         'description',
-        'parent_id',
+        'parent_course_id',
     ];
 
-    /**
-     * Get the parent course.
-     */
-    public function parent()
+    public function parentCourse()
     {
-        return $this->belongsTo(Cours::class, 'parent_id');
+        return $this->belongsTo(ParentCourse::class);
+    }
+    public function documents()
+    {
+        return $this->hasMany(Document::class, 'cours_id', 'id');
     }
 
-    /**
-     * Get the child courses.
-     */
-    public function children()
+    public function schools()
     {
-        return $this->hasMany(Cours::class, 'parent_id');
+        return $this->belongsToMany(School::class, 'schoollevelscours', 'cours_id', 'schoollevel_id');
     }
+
 }
 
 

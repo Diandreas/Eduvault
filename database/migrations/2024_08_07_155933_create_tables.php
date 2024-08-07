@@ -47,6 +47,7 @@ return new class extends Migration
 
         Schema::create('school', function (Blueprint $table) {
             $table->id();
+            $table->string('image', 250)->nullable();
             $table->string('name', 100)->nullable();
             $table->text('description')->nullable();
             $table->unsignedBigInteger('country_id');

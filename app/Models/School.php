@@ -41,7 +41,16 @@ class School extends Model
      */
     public function country()
     {
-        return $this->belongsTo(\App\Models\Country::class, 'country_id', 'id');
+        return $this->belongsTo(Country::class);
     }
 
+    public function grades()
+    {
+        return $this->belongsToMany(Grade::class, 'school_has_grade', 'school_id', 'grade_id');
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
 }

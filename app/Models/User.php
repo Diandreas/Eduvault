@@ -27,6 +27,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'surname',
+        'address',
+        'profession_id',
+        'create_time',
     ];
 
     /**
@@ -61,5 +65,14 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function profession()
+    {
+        return $this->belongsTo(Profession::class);
+    }
+
+    public function levels()
+    {
+        return $this->belongsToMany(Grade::class, 'users_has_level', 'users_id', 'grade_id');
     }
 }

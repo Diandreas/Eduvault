@@ -25,8 +25,8 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'surname' => 'nullable|string|max:45',
-            'address' => 'required|string|max:255',
-            'profession_id' => 'required|exists:professions,id',
+            'address' => 'nullable|string|max:255',
+            'profession_id' => 'nullable|exists:professions,id',
         ]);
 
         User::create($request->all());
@@ -51,8 +51,8 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8',
             'surname' => 'nullable|string|max:45',
-            'address' => 'required|string|max:255',
-            'profession_id' => 'required|exists:professions,id',
+            'address' => 'nullable|string|max:255',
+            'profession_id' => 'nullable|exists:professions,id',
         ]);
 
         $user->update($request->all());

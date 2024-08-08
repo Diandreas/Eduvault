@@ -11,6 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('profession', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 255);
+            $table->primary('id');
+        });
+
         // Ajouter les nouvelles colonnes à la table users
         Schema::table('users', function (Blueprint $table) {
             $table->string('surname', 45)->nullable();
@@ -23,11 +29,7 @@ return new class extends Migration
         });
 
         // Créer les autres tables
-        Schema::create('profession', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 255);
-            $table->primary('id');
-        });
+
 
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
@@ -87,12 +89,20 @@ return new class extends Migration
             $table->unsignedBigInteger('documents_grade_id');
             $table->unsignedBigInteger('period_id');
             $table->primary(['id', 'course_id', 'school_id', 'grade_id', 'documents_id', 'documents_course_id', 'documents_school_id', 'documents_grade_id', 'period_id']);
+
             $table->foreign('course_id')->references('id')->on('course')->onDelete('no action')->onUpdate('no action');
             $table->foreign('school_id')->references('id')->on('school')->onDelete('no action')->onUpdate('no action');
             $table->foreign('grade_id')->references('id')->on('grade')->onDelete('no action')->onUpdate('no action');
-            $table->foreign(['documents_id', 'documents_course_id', 'documents_school_id', 'documents_grade_id'])->references(['id', 'course_id', 'school_id', 'grade_id'])->on('documents')->onDelete('no action')->onUpdate('no action');
+
+            // Spécifiez un nom court pour cette contrainte
+            $table->foreign(['documents_id', 'documents_course_id', 'documents_school_id', 'documents_grade_id'])
+                ->references(['id', 'course_id', 'school_id', 'grade_id'])->on('documents')
+                ->onDelete('no action')->onUpdate('no action')
+                ->name('fk_documents_docs');
+
             $table->foreign('period_id')->references('id')->on('period')->onDelete('no action')->onUpdate('no action');
         });
+
 
         Schema::create('users_has_level', function (Blueprint $table) {
             $table->unsignedBigInteger('users_id');
@@ -126,7 +136,12 @@ return new class extends Migration
             $table->string('status', 45)->nullable();
             $table->primary(['chrono_id', 'documents_id', 'documents_course_id', 'documents_school_id', 'documents_grade_id']);
             $table->foreign('chrono_id')->references('id')->on('chrono')->onDelete('no action')->onUpdate('no action');
-            $table->foreign(['documents_id', 'documents_course_id', 'documents_school_id', 'documents_grade_id'])->references(['id', 'course_id', 'school_id', 'grade_id'])->on('documents')->onDelete('no action')->onUpdate('no action');
+            $table->foreign(['documents_id', 'documents_course_id', 'documents_school_id', 'documents_grade_id'])
+                ->references(['id', 'course_id', 'school_id', 'grade_id'])
+                ->on('documents')
+                ->onDelete('no action')
+                ->onUpdate('no action')
+            ->name('fk_chrono_has_docs');
         });
     }
 

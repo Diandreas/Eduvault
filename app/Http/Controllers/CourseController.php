@@ -15,8 +15,10 @@ class CourseController extends Controller
     }
 
     public function create()
+
     {
-        return view('courses.create');
+        $courses = Course::all();
+        return view('courses.create', compact('courses'));
     }
 
     public function store(Request $request)
@@ -41,6 +43,7 @@ class CourseController extends Controller
 
     public function edit(Course $course)
     {
+        $courses = Course::all();
         return view('courses.edit', compact('course'));
     }
 

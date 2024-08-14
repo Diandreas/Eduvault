@@ -6,43 +6,46 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="font-bold text-xl text-blue-600 hover:text-blue-800 transition duration-300">
                         EDUVAULT
-
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden md:flex space-x-8 sm:-my-px sm:ms-10">
+                <div class="hidden md:flex flex-wrap space-x-8 sm:-my-px sm:ms-10">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        <i class="bi bi-house-door w-5 h-5 mr-2"></i>
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('cours.create') }}" :active="request()->routeIs('cours.create')" class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    <x-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.create')" class="flex items-center">
+                        <i class="bi bi-book w-5 h-5 mr-2"></i>
                         {{ __('Courses') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('country.index') }}" :active="request()->routeIs('country.index')" class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <i class="bi bi-globe w-5 h-5 mr-2"></i>
                         {{ __('Countries') }}
                     </x-nav-link>
-
                     <x-nav-link href="{{ route('school.index') }}" :active="request()->routeIs('school.index')" class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        <i class="bi bi-building w-5 h-5 mr-2"></i>
                         {{ __('Schools') }}
                     </x-nav-link>
-
-                    <x-nav-link href="{{ route('schoollevel.index') }}" :active="request()->routeIs('schoollevel.index')" class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                        {{ __('School Levels') }}
-                    </x-nav-link>
-
-                    <x-nav-link href="{{ route('schoollevelscours.index') }}" :active="request()->routeIs('schoollevelscours.index')" class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                        {{ __('School Level Courses') }}
-                    </x-nav-link>
-
                     <x-nav-link href="{{ route('documents.index') }}" :active="request()->routeIs('documents.index')" class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        <i class="bi bi-file-earmark w-5 h-5 mr-2"></i>
                         {{ __('Documents') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('professions.index') }}" :active="request()->routeIs('professions.index')" class="flex items-center">
+                        <i class="bi bi-briefcase w-5 h-5 mr-2"></i>
+                        {{ __('Professions') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('grades.index') }}" :active="request()->routeIs('grades.index')" class="flex items-center">
+                        <i class="bi bi-mortarboard w-5 h-5 mr-2"></i>
+                        {{ __('Grades') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('periods.index') }}" :active="request()->routeIs('periods.index')" class="flex items-center">
+                        <i class="bi bi-calendar w-5 h-5 mr-2"></i>
+                        {{ __('Periods') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('chronos.index') }}" :active="request()->routeIs('chronos.index')" class="flex items-center">
+                        <i class="bi bi-clock-history w-5 h-5 mr-2"></i>
+                        {{ __('chronos') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -167,10 +170,42 @@
     <div :class="{'block': open, 'hidden': !open}" class="md:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="flex items-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                <i class="bi bi-house-door w-5 h-5 mr-2"></i>
                 {{ __('Home') }}
             </x-responsive-nav-link>
-            <!-- Ajoutez d'autres liens pour le menu mobile -->
+            <x-responsive-nav-link href="{{ route('courses.create') }}" :active="request()->routeIs('courses.create')" class="flex items-center">
+                <i class="bi bi-book w-5 h-5 mr-2"></i>
+                {{ __('Courses') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('country.index') }}" :active="request()->routeIs('country.index')" class="flex items-center">
+                <i class="bi bi-globe w-5 h-5 mr-2"></i>
+                {{ __('Countries') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('school.index') }}" :active="request()->routeIs('school.index')" class="flex items-center">
+                <i class="bi bi-building w-5 h-5 mr-2"></i>
+                {{ __('Schools') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('documents.index') }}" :active="request()->routeIs('documents.index')" class="flex items-center">
+                <i class="bi bi-file-earmark w-5 h-5 mr-2"></i>
+                {{ __('Documents') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('professions.index') }}" :active="request()->routeIs('professions.index')" class="flex items-center">
+                <i class="bi bi-briefcase w-5 h-5 mr-2"></i>
+                {{ __('Professions') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('grades.index') }}" :active="request()->routeIs('grades.index')" class="flex items-center">
+                <i class="bi bi-mortarboard w-5 h-5 mr-2"></i>
+                {{ __('Grades') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('periods.index') }}" :active="request()->routeIs('periods.index')" class="flex items-center">
+                <i class="bi bi-calendar w-5 h-5 mr-2"></i>
+                {{ __('Periods') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('chronos.index') }}" :active="request()->routeIs('chronos.index')" class="flex items-center">
+                <i class="bi bi-clock-history w-5 h-5 mr-2"></i>
+                {{ __('chronos') }}
+            </x-responsive-nav-link>
         </div>
     </div>
 </nav>

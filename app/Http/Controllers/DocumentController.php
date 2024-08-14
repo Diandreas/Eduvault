@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Document;
+use App\Models\School;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -10,12 +12,15 @@ class DocumentController extends Controller
     public function index()
     {
         $documents = Document::all();
+        $courses = Course::all();
         return view('documents.index', compact('documents'));
     }
 
     public function create()
     {
-        return view('documents.create');
+        $courses = Course::all();
+        $schools = School::all();
+        return view('documents.create', compact('courses','schools'));
     }
 
     public function store(Request $request)

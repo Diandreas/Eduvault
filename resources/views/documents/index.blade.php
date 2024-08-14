@@ -56,7 +56,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($alldocs as $doc)
+                                @foreach ($documents as $doc)
                                     <tr>
                                         <td class="py-2 px-4 border-b border-gray-200">
                                             {{ $doc->name }}
@@ -80,7 +80,7 @@
                                             {{ $doc->school->name }}
                                         </td>
                                         <td class="py-2 px-4 border-b border-gray-200">
-                                           
+
                                             <!-- Delete Button -->
                                             <form action="{{ route('documents.destroy', $doc->id) }}" method="POST"  >
                                                 @csrf

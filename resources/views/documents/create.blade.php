@@ -35,8 +35,8 @@
                         <div class="block mt-4">
                             <label for="name">{{ __('Path') }}</label>
                             <input type="text" class="block mt-1 w-full" id="path" name="path" value="{{ old('path') }}"  required readonly>
-                        </div>  
-                        
+                        </div>
+
                         <div class="block mt-4">
                             <label for="name">{{ __('Format') }}</label>
                             <input type="text" class="block mt-1 w-full" id="format" name="format" value="{{ old('format') }}"  required readonly>
@@ -55,31 +55,31 @@
                         <div class="form-group">
                             <label for="cours_id">{{ __('Cours') }}</label>
                             <select class="block mt-1 w-full" id="cours_id" name="cours_id" >
-                                @foreach ($allcours as $cours)
+                                @foreach ($courses as $cours)
                                     <option value="{{$cours->id}}" {{ (old('cours_id') == $cours->id) ? 'selected' : '' }}>
                                         {{$cours->name}}
                                     </option>
-                                @endforeach    
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="school_id">{{ __('School') }}</label>
                             <select class="block mt-1 w-full" id="school_id" name="schools_id" >
-                                @foreach ($allSchool as $schools)
-                                    <option value="{{$schools->id}}" {{ (old('schools_id') == $schools->id) ? 'selected' : '' }}>
-                                        {{$schools->name}}
+                                @foreach ($schools as $school)
+                                    <option value="{{$school->id}}" {{ (old('schools_id') == $schools->id) ? 'selected' : '' }}>
+                                        {{$school->name}}
                                     </option>
-                                @endforeach    
+                                @endforeach
                             </select>
                         </div>
-                        
+
                         <div class="flex items-center justify-end mt-4">
                             <button type="submit" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 {{ __('Submit') }}
                             </button>
                         </div>
-                        
+
                     </form>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                         <a  href="{{ route('documents.index') }}"  class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">

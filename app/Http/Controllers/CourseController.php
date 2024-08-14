@@ -10,8 +10,8 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::all();
-        return view('courses.index', compact('courses'));
+        $parentCourses = Course::whereNull('parent_id')->with('children')->get();
+        return view('courses.index', compact('parentCourses'));
     }
 
     public function create()

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('address', 255)->nullable();
             $table->unsignedBigInteger('profession_id');
             // Ajouter la clé étrangère pour profession_id
-            $table->foreign('profession_id')->references('id')->on('professions')->onDelete('no action')->onUpdate('no action')->nullable();
+
         });
 
         // Créer les autres tables

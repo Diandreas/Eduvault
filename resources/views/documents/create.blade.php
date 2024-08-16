@@ -19,45 +19,45 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('documents.store') }}" method="POST">
+                    <form action="{{ route('documents.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="block mt-4">
                             <label for="name">{{ __('Name') }}</label>
-                            <input type="text" class="block mt-1 w-full" id="name" name="name" value="{{ old('name') }}"  required>
+                            <input type="text" class="block mt-1 w-full" id="name" name="name" value="{{ old('name') }}" required>
                         </div>
 
                         <div class="block mt-4">
                             <label for="file">{{ __('Upload File') }}</label>
-                            <input type="file" class="block mt-1 w-full" id="file" name="file" required readonly>
+                            <input type="file" class="block mt-1 w-full" id="file" name="file" required>
                         </div>
 
                         <div class="block mt-4">
-                            <label for="name">{{ __('Path') }}</label>
-                            <input type="text" class="block mt-1 w-full" id="path" name="path" value="{{ old('path') }}"  required readonly>
+                            <label for="path">{{ __('Path') }}</label>
+                            <input type="text" class="block mt-1 w-full" id="path" name="path" value="{{ old('path') }}" required readonly>
                         </div>
 
                         <div class="block mt-4">
-                            <label for="name">{{ __('Format') }}</label>
-                            <input type="text" class="block mt-1 w-full" id="format" name="format" value="{{ old('format') }}"  required readonly>
+                            <label for="format">{{ __('Format') }}</label>
+                            <input type="text" class="block mt-1 w-full" id="format" name="format" value="{{ old('format') }}" required readonly>
                         </div>
 
                         <div class="block mt-4">
-                            <label for="name">{{ __('size') }}</label>
-                            <input type="text" class="block mt-1 w-full" id="size" name="size" value="{{ old('size') }}"  required readonly>
+                            <label for="size">{{ __('Size') }}</label>
+                            <input type="text" class="block mt-1 w-full" id="size" name="size" value="{{ old('size') }}" required readonly>
                         </div>
 
-                        <!-- <div class="block mt-4">
-                            <label for="name">{{ __('DateTime') }}</label>
+                        <div class="block mt-4">
+                            <label for="create_at">{{ __('Date and Time') }}</label>
                             <input type="datetime-local" class="block mt-1 w-full" id="create_at" name="create_at" value="{{ date('Y-m-d\TH:i') }}" readonly>
-                        </div> -->
+                        </div>
 
                         <div class="form-group">
-                            <label for="cours_id">{{ __('Cours') }}</label>
-                            <select class="block mt-1 w-full" id="cours_id" name="cours_id" >
+                            <label for="course_id">{{ __('Cours') }}</label>
+                            <select class="block mt-1 w-full" id="course_id" name="course_id">
                                 @foreach ($courses as $cours)
-                                    <option value="{{$cours->id}}" {{ (old('cours_id') == $cours->id) ? 'selected' : '' }}>
-                                        {{$cours->name}}
+                                    <option value="{{ $cours->id }}" {{ (old('course_id') == $cours->id) ? 'selected' : '' }}>
+                                        {{ $cours->name }}
                                     </option>
                                 @endforeach
                             </select>
@@ -65,10 +65,76 @@
 
                         <div class="form-group">
                             <label for="school_id">{{ __('School') }}</label>
-                            <select class="block mt-1 w-full" id="school_id" name="schools_id" >
+                            <select class="block mt-1 w-full" id="school_id" name="school_id">
                                 @foreach ($schools as $school)
-                                    <option value="{{$school->id}}" {{ (old('schools_id') == $schools->id) ? 'selected' : '' }}>
-                                        {{$school->name}}
+                                    <option value="{{ $school->id }}" {{ (old('school_id') == $school->id) ? 'selected' : '' }}>
+                                        {{ $school->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="grade_id">{{ __('Grade') }}</label>
+                            <select class="block mt-1 w-full" id="grade_id" name="grade_id">
+                                @foreach ($grades as $grade)
+                                    <option value="{{ $grade->id }}" {{ (old('grade_id') == $grade->id) ? 'selected' : '' }}>
+                                        {{ $grade->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="documents_id">{{ __('Document') }}</label>
+                            <select class="block mt-1 w-full" id="documents_id" name="documents_id">
+                                @foreach ($documents as $document)
+                                    <option value="{{ $document->id }}" {{ (old('documents_id') == $document->id) ? 'selected' : '' }}>
+                                        {{ $document->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="documents_course_id">{{ __('Document Course') }}</label>
+                            <select class="block mt-1 w-full" id="documents_course_id" name="documents_course_id">
+                                @foreach ($courses as $cours)
+                                    <option value="{{ $cours->id }}" {{ (old('documents_course_id') == $cours->id) ? 'selected' : '' }}>
+                                        {{ $cours->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="documents_school_id">{{ __('Document School') }}</label>
+                            <select class="block mt-1 w-full" id="documents_school_id" name="documents_school_id">
+                                @foreach ($schools as $school)
+                                    <option value="{{ $school->id }}" {{ (old('documents_school_id') == $school->id) ? 'selected' : '' }}>
+                                        {{ $school->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="documents_grade_id">{{ __('Document Grade') }}</label>
+                            <select class="block mt-1 w-full" id="documents_grade_id" name="documents_grade_id">
+                                @foreach ($grades as $grade)
+                                    <option value="{{ $grade->id }}" {{ (old('documents_grade_id') == $grade->id) ? 'selected' : '' }}>
+                                        {{ $grade->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="period_id">{{ __('Period') }}</label>
+                            <select class="block mt-1 w-full" id="period_id" name="period_id">
+                                @foreach ($periods as $period)
+                                    <option value="{{ $period->id }}" {{ (old('period_id') == $period->id) ? 'selected' : '' }}>
+                                        {{ $period->name }}
                                     </option>
                                 @endforeach
                             </select>
@@ -82,7 +148,7 @@
 
                     </form>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                        <a  href="{{ route('documents.index') }}"  class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                        <a href="{{ route('documents.index') }}" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
                             Back
                         </a>
                     </div>

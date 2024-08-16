@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Document;
+use App\Models\Grade;
+use App\Models\Period;
 use App\Models\School;
 use Illuminate\Http\Request;
 
@@ -20,7 +22,10 @@ class DocumentController extends Controller
     {
         $courses = Course::all();
         $schools = School::all();
-        return view('documents.create', compact('courses','schools'));
+        $grades = Grade::all();
+        $documents = Document::all();
+        $periods = Period::all();
+        return view('documents.create', compact('courses', 'schools', 'grades', 'documents', 'periods'));
     }
 
     public function store(Request $request)

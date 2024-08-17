@@ -9,10 +9,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root {
-            --primary-color: #FF2D20; /* Define your primary color here */
+            --primary-color: #0275d8; /* Define your primary color here */
         }
         .bg-gradient {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #FF8E53 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #8d28d0 100%);
         }
         .hover-scale {
             transition: transform 0.3s ease-in-out;
@@ -22,7 +22,7 @@
         }
     </style>
 </head>
-<body class="font-sans antialiased bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+<body class="font-sans antialiased bg-gray-50 dark:bg-gray-900 text-white">
 <div class="min-h-screen flex flex-col">
     <header class="bg-white dark:bg-gray-800 shadow-md">
         <nav class="container mx-auto px-6 py-4">

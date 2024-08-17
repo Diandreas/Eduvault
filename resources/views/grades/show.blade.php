@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="text-2xl font-bold text-white leading-tight">
             {{ __('Grade Details') }}: {{ $grade->name }}
         </h2>
     </x-slot>

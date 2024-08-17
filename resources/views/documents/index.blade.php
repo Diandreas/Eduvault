@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 text-gray-800">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -63,7 +63,7 @@
                             </thead>
                             <tbody>
                             @foreach ($documents as $doc)
-                                <tr>
+                                <tr class="text-gray-800">
                                     <td class="py-2 px-4 border-b border-gray-200">
                                         {{ $doc->name }}
                                     </td>

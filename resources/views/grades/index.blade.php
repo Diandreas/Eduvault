@@ -57,6 +57,7 @@
                                     <td class="border-b border-gray-200 px-6 py-4 text-sm">{{ $grade->min_score }}</td>
                                     <td class="border-b border-gray-200 px-6 py-4 text-sm">{{ $grade->max_score }}</td>
                                     <td class="border-b border-gray-200 px-6 py-4 text-sm text-right">
+                                        <a href="{{ route('grades.show', $grade->id) }}" class="text-blue-600 hover:text-blue-900 mr-3">Show</a>
                                         <a href="{{ route('grades.edit', $grade->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
                                         <form action="{{ route('grades.destroy', $grade->id) }}" method="POST" class="inline-block">
                                             @csrf

@@ -36,10 +36,27 @@ class GradeController extends Controller
         return redirect()->route('grades.index')->with('success', 'Grade created successfully.');
     }
 
-    public function show(Grade $grade)
+    public function show(Request $request, Grade $grade)
     {
-        return view('grades.show', compact('grade'));
+        $query = $request->input('search');
+
+        $documents = $grade->documents()
+            ->where(function ($queryBuilder) use ($query) {
+                $queryBuilder->where('name', 'like', '%' . $query . '%')
+                    ->orWhereHas('course', function ($queryBuilder) use ($query) {
+                        $queryBuilder->where('name', 'like', '%' . $query . '%');
+                    })
+                    ->orWhereHas('period', function ($queryBuilder) use ($query) {
+                        $queryBuilder->where('name', 'like', '%' . $query . '%');
+                    });
+            })
+            ->with('course', 'period')
+            ->get();
+
+        return view('grades.show', compact('grade', 'documents'));
     }
+
+
 
     public function edit(Grade $grade)
     {

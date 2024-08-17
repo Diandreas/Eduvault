@@ -26,7 +26,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/', [DocumentController::class, 'home'])->name('home');
+    Route::get('/home', [DocumentController::class, 'home'])->name('home');
     Route::get('/documents/search', [DocumentController::class, 'search'])->name('documents.search');
 
 // Routes pour CountryController

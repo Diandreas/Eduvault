@@ -62,11 +62,11 @@
                         </div>
                     </div>
 
-                    @if ($documents->hasPages())
-                        <div class="mt-4">
-                            {{ $documents->links() }}
-                        </div>
-                    @endif
+{{--                    @if ($documents->hasPages())--}}
+{{--                        <div class="mt-4">--}}
+{{--                            {{ $documents->links() }}--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
                 </div>
             </div>
         </div>

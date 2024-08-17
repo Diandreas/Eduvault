@@ -28,6 +28,7 @@ class DocumentController extends Controller
         return view('documents.create', compact('courses', 'schools', 'grades', 'documents', 'periods'));
     }
 
+
     public function store(Request $request)
     {
         $request->validate([
@@ -39,7 +40,7 @@ class DocumentController extends Controller
             'course_id' => 'required|exists:courses,id',
             'school_id' => 'required|exists:schools,id',
             'grade_id' => 'required|exists:grades,id',
-            'documents_id' => 'required|exists:documents,id',
+            'documents_id' => 'exists:documents,id',
             'documents_course_id' => 'required|exists:courses,id',
             'documents_school_id' => 'required|exists:schools,id',
             'documents_grade_id' => 'required|exists:grades,id',
@@ -89,5 +90,39 @@ class DocumentController extends Controller
         $document->delete();
 
         return redirect()->route('documents.index')->with('success', 'Document deleted successfully.');
+    }
+    public function home()
+    {
+        $courses = Course::all();
+        $schools = School::all();
+        $grades = Grade::all();
+        $periods = Period::all();
+        $documents = Document::all();
+        return view('home', compact('courses', 'schools', 'grades', 'periods', 'documents'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = Document::query();
+
+        if ($request->filled('course_id')) {
+            $query->where('course_id', $request->course_id);
+        }
+
+        if ($request->filled('school_id')) {
+            $query->where('school_id', $request->school_id);
+        }
+
+        if ($request->filled('period_id')) {
+            $query->where('period_id', $request->period_id);
+        }
+
+        if ($request->filled('grade_id')) {
+            $query->where('grade_id', $request->grade_id);
+        }
+
+        $documents = $query->get();
+
+        return view('documents.search_results', compact('documents'));
     }
 }

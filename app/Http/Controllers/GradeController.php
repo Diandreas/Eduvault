@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 
 class GradeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $grades = Grade::all();
+        $search = $request->input('search');
+
+        if($search)
+        {
+            $grades = Grade::where('name','Like','%'.$search.'%')->get();
+        }
         return view('grades.index', compact('grades'));
     }
 

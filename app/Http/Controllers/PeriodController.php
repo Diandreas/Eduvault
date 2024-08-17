@@ -7,9 +7,20 @@ use Illuminate\Http\Request;
 
 class PeriodController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $periods = Period::all();
+        $search = $request->input('search');
+
+        if($search)
+        {
+            $periods = Period::where('name','Like','%'.$search.'%')->get();
+        }
+        // else
+        // {
+        //     $periods = Period::all();
+        // }
+       
         return view('periods.index', compact('periods'));
     }
 

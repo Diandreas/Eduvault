@@ -7,10 +7,30 @@ use Illuminate\Http\Request;
 
 class ProfessionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $professions = Profession::all();
-        return view('professions.index', compact('professions'));
+        // $professions = Profession::all();
+        // return view('professions.index', compact('professions'));
+        $search = $request->input('search');
+
+        // Construire la requête de base
+        $query = Profession::query();
+
+        // Si un terme de recherche est fourni, appliquer le filtre
+        if ($search) {
+            $query->where('name', 'LIKE', "%{$search}%");
+        }
+
+        // Paginer les résultats (5 par page dans cet exemple)
+        $professions = $query->paginate(5);
+
+        // Calculer l'index pour l'affichage
+        $currentPage = $request->input('page', 1);
+        $perPage = 5;
+        $i = ($currentPage - 1) * $perPage;
+
+        // Retourner la vue avec les résultats paginés et le terme de recherche
+        return view('professions.index', compact('professions', 'search', 'i'));
     }
 
     public function create()

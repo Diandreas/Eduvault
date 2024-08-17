@@ -5,7 +5,25 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <!-- Recherche
+    <div class="py-12 bg-gray-100">
+        <div class="max-w-full mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="p-1 sm:p-4 bg-white shadow sm:rounded-lg">
+                <div class="w-full">
+                    <form method="GET" action="{{ route('country.index') }}"  role="form" enctype="multipart/form-data">
+                                    @csrf
+                            <input type="text" name="search" placeholder=" search a country....">
+                            <button type="submit" class="mt-4 rounded-md bg-indigo-600 px-4 py-2 text-white">{{ __('Search') }}</button>
+                     </form>
+                </div>
+            </div>
+        </div>
+    </div>   -->
+
+
+
+
+    <div class="py-5">
         <div class="max-w-full mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="w-full">
@@ -19,6 +37,21 @@
                         </div>
 
                     </div>
+
+                     <!-- Recherche -->
+                    <div class="py-1 bg-gray-100">
+                        <div class="max-w-full mx-auto sm:px-1 lg:px-1 space-y-6">
+                            <div class="p-1 sm:p-1 bg-white shadow sm:rounded-lg">
+                                <div class="w-full">
+                                    <form method="GET" action="{{ route('country.index') }}"  role="form" enctype="multipart/form-data">
+                                                    @csrf
+                                            <input type="text" name="search"  placeholder=" search a country....">
+                                            <button type="submit" class="mt-4 rounded-md bg-indigo-600 px-4 py-2 text-white">{{ __('Search') }}</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
 
                     <div class="flow-root">
                         <div class="mt-8 overflow-x-auto">
@@ -46,9 +79,10 @@
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200 bg-white">
+                        
                                     @foreach ($countries as $country)
                                         <tr class="even:bg-gray-50">
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900">{{ ++$i }}</td>
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900">{{ $country->id }}</td>
 
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $country->name }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $country->abbr }}</td>

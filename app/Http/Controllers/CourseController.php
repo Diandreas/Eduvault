@@ -34,12 +34,12 @@ class CourseController extends Controller
         return redirect()->route('courses.index')->with('success', 'Course created successfully.');
     }
 
-    public function show(Course $course)
+    // public function show(Course $course)
 
-    {
-        $cours = Cours::with(['documents', 'schools'])->find($id);
-        return view('courses.show', compact('course'));
-    }
+    // {
+    //     $cours = Cours::with(['documents', 'schools'])->find($id);
+    //     return view('courses.show', compact('course'));
+    // }
 
     public function edit(Course $course)
     {

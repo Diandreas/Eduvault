@@ -16,10 +16,27 @@ class CountryController extends Controller
      */
     public function index(Request $request): View
     {
-        $countries = Country::paginate(5);
+        
+        $search = $request->input('search');
 
-        return view('country.index', compact('countries'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        // Construire la requête de base
+        $query = Country::query();
+
+        // Si un terme de recherche est fourni, appliquer le filtre
+        if ($search) {
+            $query->where('name', 'LIKE', "%{$search}%");
+        }
+
+        // Paginer les résultats (5 par page dans cet exemple)
+        $countries = $query->paginate(5);
+
+        // Calculer l'index pour l'affichage
+        $currentPage = $request->input('page', 1);
+        $perPage = 5;
+        $i = ($currentPage - 1) * $perPage;
+
+        // Retourner la vue avec les résultats paginés et le terme de recherche
+        return view('country.index', compact('countries', 'search', 'i'));
     }
 
     /**
@@ -80,5 +97,13 @@ class CountryController extends Controller
 
         return Redirect::route('country.index')
             ->with('success', 'Country deleted successfully');
+    }
+
+    public function search(Request $request): View
+    {
+        $search = $request->get('search');
+        $countries = Country::where('name', 'LIKE', '%'.$search.'%')->paginate(5);
+    
+        return view('country.index', compact('countries'));
     }
 }

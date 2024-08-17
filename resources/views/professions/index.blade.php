@@ -20,6 +20,21 @@
                         </div>
                     </div>
 
+                     <!-- Recherche -->
+                     <div class="py-1 bg-gray-100">
+                        <div class="max-w-full mx-auto sm:px-1 lg:px-1 space-y-6">
+                            <div class="p-1 sm:p-1 bg-white shadow sm:rounded-lg">
+                                <div class="w-full">
+                                    <form method="GET" action="{{ route('professions.index') }}"  role="form" enctype="multipart/form-data">
+                                                    @csrf
+                                            <input type="text" name="search"  placeholder=" search a profession....">
+                                            <button type="submit" class="mt-4 rounded-md bg-indigo-600 px-4 py-2 text-white">{{ __('Search') }}</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+
                     <div class="flow-root">
                         <div class="mt-8 overflow-x-auto">
                             <div class="inline-block min-w-full py-2 align-middle">

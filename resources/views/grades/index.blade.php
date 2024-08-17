@@ -22,6 +22,21 @@
                         </div>
                     </div>
 
+                     <!-- Recherche -->
+                     <div class="py-1 bg-gray-100">
+                        <div class="max-w-full mx-auto sm:px-1 lg:px-1 space-y-6">
+                            <div class="p-1 sm:p-1 bg-white shadow sm:rounded-lg">
+                                <div class="w-full">
+                                    <form method="GET" action="{{ route('grades.index') }}"  role="form" enctype="multipart/form-data">
+                                                    @csrf
+                                            <input type="text" name="search"  placeholder=" search a grade....">
+                                            <button type="submit" class="mt-4 rounded-md bg-indigo-600 px-4 py-2 text-white">{{ __('Search') }}</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+
                     <div class="overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
                         <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative">
                             <thead>
@@ -29,6 +44,7 @@
                                 <th class="bg-gray-100 sticky top-0 border-b border-gray-200 px-6 py-3 text-gray-600 font-bold tracking-wider uppercase text-xs">Name</th>
                                 <th class="bg-gray-100 sticky top-0 border-b border-gray-200 px-6 py-3 text-gray-600 font-bold tracking-wider uppercase text-xs">Description</th>
                                 <th class="bg-gray-100 sticky top-0 border-b border-gray-200 px-6 py-3 text-gray-600 font-bold tracking-wider uppercase text-xs">Min Score</th>
+                                <th class="bg-gray-100 sticky top-0 border-b border-gray-200 px-6 py-3 text-gray-600 font-bold tracking-wider uppercase text-xs">Actions</th>
 {{--                                <th class="bg-gray-100 sticky top-0 border-b border-gray-200 px-6 py-3 text-gray-600 font-bold tracking-wider uppercase text-xs">Max Score</th>--}}
 {{--                                <th class="bg-gray-100 sticky top-0 border-b border-gray-200 px-6 py-3 text-gray-600 font-bold tracking-wider uppercase text-xs text-right">Actions</th>--}}
 {{--                            </tr>--}}

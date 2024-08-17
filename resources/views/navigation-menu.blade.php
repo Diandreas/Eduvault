@@ -1,17 +1,18 @@
+
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="font-bold text-xl text-blue-600 hover:text-blue-800 transition duration-300">
+                    <a href="{{ route('home') }}" class="font-bold text-xl text-blue-600 hover:text-blue-800 transition duration-300">
                         EDUVAULT
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden md:flex flex-wrap space-x-8 sm:-my-px sm:ms-10">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="flex items-center">
+                    <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')" class="flex items-center">
                         <i class="bi bi-house-door w-5 h-5 mr-2"></i>
                         {{ __('Home') }}
                     </x-nav-link>
@@ -169,7 +170,7 @@
     <!-- Menu mobile amélioré -->
     <div :class="{'block': open, 'hidden': !open}" class="md:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="flex items-center">
+            <x-responsive-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')" class="flex items-center">
                 <i class="bi bi-house-door w-5 h-5 mr-2"></i>
                 {{ __('Home') }}
             </x-responsive-nav-link>

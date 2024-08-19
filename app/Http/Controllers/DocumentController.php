@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
+
     public function index()
     {
         $documents = Document::all();
@@ -33,25 +34,34 @@ class DocumentController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:45',
-            'path' => 'required|string|max:250',
-            'format' => 'required|string|max:10',
-            'size' => 'required|string|max:100',
-            'create_at' => 'required|date',
+            'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:10240', // 10MB max
             'course_id' => 'required|exists:courses,id',
             'school_id' => 'required|exists:schools,id',
             'grade_id' => 'required|exists:grades,id',
-            'documents_id' => 'exists:documents,id',
-            'documents_course_id' => 'required|exists:courses,id',
-            'documents_school_id' => 'required|exists:schools,id',
-            'documents_grade_id' => 'required|exists:grades,id',
             'period_id' => 'required|exists:periods,id',
         ]);
 
-        Document::create($request->all());
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('documents', $fileName, 'public');
 
-        return redirect()->route('documents.index')->with('success', 'Document created successfully.');
+            $document = new Document();
+            $document->name = $request->name;
+            $document->path = $filePath;
+            $document->format = $file->getClientOriginalExtension();
+            $document->size = $file->getSize();
+            $document->course_id = $request->course_id;
+            $document->school_id = $request->school_id;
+            $document->grade_id = $request->grade_id;
+            $document->period_id = $request->period_id;
+            $document->save();
+
+            return redirect()->route('documents.index')->with('success', 'Document uploaded successfully.');
+        }
+
+        return back()->with('error', 'Failed to upload document.');
     }
-
     public function show(Document $document)
     {
         return view('documents.show', compact('document'));
@@ -124,5 +134,10 @@ class DocumentController extends Controller
         $documents = $query->get();
 
         return view('documents.search_results', compact('documents'));
+    }
+    public function download(Document $document)
+    {
+        $path = storage_path('app/public/' . $document->path);
+        return response()->download($path, $document->name . '.' . $document->format);
     }
 }

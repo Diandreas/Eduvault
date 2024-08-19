@@ -87,9 +87,6 @@ return new class extends Migration
             $table->unsignedBigInteger('school_id');
             $table->unsignedBigInteger('grade_id');
             $table->unsignedBigInteger('documents_id')->nullable(); // Rendre documents_id non requis
-            $table->unsignedBigInteger('documents_course_id');
-            $table->unsignedBigInteger('documents_school_id');
-            $table->unsignedBigInteger('documents_grade_id');
             $table->unsignedBigInteger('period_id');
             $table->timestamps();
             $table->primary(['id', 'course_id', 'school_id', 'grade_id', 'documents_course_id', 'documents_school_id', 'documents_grade_id', 'period_id']);

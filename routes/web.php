@@ -61,6 +61,10 @@ Route::middleware([
 //import de Benoit
 
     Route::post('/import', [ImportController::class, 'import'])->name('import');
+
+//importer pour periods
+
+    Route::post('/importPeriod', [ImportController::class, 'importPeriod'])->name('importPeriod');
 });
 
 

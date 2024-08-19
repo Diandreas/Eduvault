@@ -99,11 +99,5 @@ class CountryController extends Controller
             ->with('success', 'Country deleted successfully');
     }
 
-    public function search(Request $request): View
-    {
-        $search = $request->get('search');
-        $countries = Country::where('name', 'LIKE', '%'.$search.'%')->paginate(5);
     
-        return view('country.index', compact('countries'));
-    }
 }

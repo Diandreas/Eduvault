@@ -24,19 +24,27 @@
                             <div class="inline-block min-w-full py-2 align-middle">
                                 <div class="mt-6 border-t border-gray-100">
                                     <dl class="divide-y divide-gray-100">
+                                        <dd class="mt-1 text-lg sm:text-xl md:text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $school->name }}</dd>
+                                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
 
-                                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">Name</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $school->name }}</dd>
-                                </div>
-                                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">Description</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $school->description }}</dd>
-                                </div>
-                                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">Country</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $school->country->name }}</dd>
-                                </div>
+
+                                            <img id="imagePreview"
+                                                 src="{{ old('image', $school?->image ? asset('storage/' . $school->image) : 'https://via.placeholder.com/300x200.png?text=School+Image') }}"
+                                                 alt="Image Preview" class="max-w-full h-auto rounded-lg shadow-md">
+                                        </div>
+
+                                        {{--                                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">--}}
+                                        {{--                                            <dt class="text-sm font-medium leading-6 text-gray-900">Name</dt>--}}
+                                        {{--                                            --}}
+                                        {{--                                        </div>--}}
+                                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt class="text-sm font-medium leading-6 text-gray-900">Description</dt>
+                                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $school->description }}</dd>
+                                        </div>
+                                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt class="text-sm font-medium leading-6 text-gray-900">Country</dt>
+                                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $school->country->name }}</dd>
+                                        </div>
 
                                     </dl>
                                 </div>

@@ -46,7 +46,7 @@ class School extends Model
 
     public function grades()
     {
-        return $this->belongsToMany(Grade::class, 'school_has_grade', 'school_id', 'grade_id');
+        return $this->belongsToMany(Grade::class, 'schools_has_grades', 'school_id', 'grade_id');
     }
 
     public function documents()

@@ -9,7 +9,7 @@ class SchoolHasGrade extends Model
 {
     use HasFactory;
 
-    protected $table = 'school_has_grade';
+    protected $table = 'schools_has_grades';
 
     protected $fillable = ['school_id', 'school_country_id', 'grade_id'];
 

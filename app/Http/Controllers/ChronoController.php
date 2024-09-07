@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 
 class ChronoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $chronos = Chrono::all();
+        $search = $request->input('search');
+
+        if($search)
+        {
+            $chronos = Chrono::where('name','Like','%'.$search.'%')->get();
+        }
+
         return view('chronos.index', compact('chronos'));
     }
 

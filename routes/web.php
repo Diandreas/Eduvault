@@ -66,6 +66,8 @@ Route::middleware([
 
     Route::post('/importPeriod', [ImportController::class, 'importPeriod'])->name('importPeriod');
 
+    Route::post('/importGrades', [ImportController::class, 'importGrade'])->name('importGrades');
+
     Route::get('/documents/{document}/download', [DocumentController::class, 'download'])->name('documents.download');
 });
 

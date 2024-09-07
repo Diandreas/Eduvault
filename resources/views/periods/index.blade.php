@@ -82,6 +82,9 @@
                                             <p class="pl-1">or drag and drop</p>
                                         </div>
                                         <p class="text-xs text-gray-500">XLSX, XLS, CSV up to 10MB</p>
+                                        <div>
+                                            <p class="text-xs text-gray-500">The file can have column : Name,description,periodcol</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

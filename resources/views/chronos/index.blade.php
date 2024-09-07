@@ -20,20 +20,16 @@
                         </div>
                     </div>
 
-                     <!-- Recherche -->
-                     <div class="py-1 bg-gray-100">
-                        <div class="max-w-full mx-auto sm:px-1 lg:px-1 space-y-6">
-                            <div class="p-1 sm:p-1 bg-white shadow sm:rounded-lg">
-                                <div class="w-full">
-                                    <form method="GET" action="{{ route('country.index') }}"  role="form" enctype="multipart/form-data">
-                                                    @csrf
-                                            <input type="text" name="search"  placeholder=" search a country....">
-                                            <button type="submit" class="mt-4 rounded-md bg-indigo-600 px-4 py-2 text-white">{{ __('Search') }}</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
+                    <!-- Recherche -->
+                <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                    <form method="GET" action="{{ route('chronos.index') }}" class="flex items-center space-x-4">
+                        @csrf
+                        <input type="text" name="search" placeholder="Search a chrono..." class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            {{ __('Search') }}
+                        </button>
+                    </form>
+                </div>  
 
                     <div class="flow-root">
                         <div class="mt-8 overflow-x-auto">
